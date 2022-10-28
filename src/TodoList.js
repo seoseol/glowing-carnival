@@ -6,6 +6,7 @@ const TodoList = ({ data }) => {
   return (
     <div>
       <h2>todo 모아보기 </h2>
+      <span></span>
       <div>
         {data.map((it) => (
           //배열 내에 고유한 키값이 없을 때는 it, idx로 사용할 수 있음
