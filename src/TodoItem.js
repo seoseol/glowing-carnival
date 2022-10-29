@@ -1,12 +1,11 @@
 import TodoList from "./TodoList";
 
-const TodoItem = ({ id, data }) => {
-  console.log("TodoItem", { data });
+const TodoItem = ({ dataList }) => {
+  console.log("TodoItem", { dataList });
   return (
     <div>
-      <span>
-        {id} {data}
-      </span>
+      <input type="checkbox"></input>
+      <span>toooodoooo </span>
       <button>삭제</button>
       <button>북마크</button>
     </div>

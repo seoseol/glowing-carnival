@@ -6,8 +6,10 @@ import TodoList from "./TodoList";
 function App() {
   const [data, setData] = useState([]);
   const dataId = useRef(0);
-  const onCreateData = (todoName) => {
+  const onCreateData = (checked, todoName) => {
     const newItem = {
+      checked,
+      // f = 완료X t= 완료
       todoName,
       id: dataId.current,
     };
