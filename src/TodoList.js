@@ -8,15 +8,22 @@ const TodoList = ({ data, setData }) => {
 
   return (
     <div>
-      <h2>todo 모아보기 </h2>
-
       <div>
-        {data.map((item) => (
-          <TodoItem dataItem={item} dataList={data} setData={setData} />
-        ))}
+        <h2>todo 모아보기 </h2>
+        {data
+          .filter((item) => !item.marked)
+          .map((item) => (
+            <TodoItem dataItem={item} dataList={data} setData={setData} />
+          ))}
       </div>
-
-      {/* <TodoItem testData={testData} />/ */}
+      <div>
+        <h2>bookmark todo 모아보기</h2>
+        {data
+          .filter((item) => item.marked)
+          .map((item) => (
+            <TodoItem dataItem={item} dataList={data} setData={setData} />
+          ))}
+      </div>
     </div>
   );
 };

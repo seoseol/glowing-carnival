@@ -8,7 +8,7 @@ const AddTodo = ({ onCreateData }) => {
   };
 
   const buttonClicked = () => {
-    onCreateData(false, todo);
+    onCreateData(false, false, todo);
     alert("저장 성공!");
     setTodo("");
   };
