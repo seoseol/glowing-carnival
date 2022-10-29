@@ -14,13 +14,13 @@ function App() {
       id: dataId.current,
     };
     dataId.current += 1;
-    setData([newItem, ...data]);
+    setData([...data, newItem]);
   };
 
   return (
     <div className="App">
       <AddTodo onCreateData={onCreateData} />
-      <TodoList data={data} />
+      <TodoList data={data} setData={setData} />
     </div>
   );
 }
