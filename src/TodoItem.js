@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
+const StyledBtn = styled.button`
+  margin-right: 2px;
+  color: #ffffff;
+  background-color: #ffd3e7;
+  border: 2px solid #ffd3e7;
+  border-radius: 5px;
+`;
 
 const TodoItem = ({ dataItem, dataList, setData }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -39,8 +48,8 @@ const TodoItem = ({ dataItem, dataList, setData }) => {
       ) : (
         <span onClick={changeInput}>{dataItem.todoName} </span>
       )}
-      {isEdit ? <button onClick={edithandler}>ok</button> : <button onClick={removehandler}>remove</button>}
-      <button onClick={bookmarkhandler}>{dataItem.marked ? "cancel" : "bookmark"}</button>
+      <StyledBtn onClick={bookmarkhandler}>{dataItem.marked ? "cancel" : "bookmark"}</StyledBtn>
+      {isEdit ? <StyledBtn onClick={edithandler}>ok</StyledBtn> : <StyledBtn onClick={removehandler}>remove</StyledBtn>}
     </div>
   );
 };

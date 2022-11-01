@@ -1,10 +1,16 @@
 import { useState, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
+import styled from "styled-components";
 
+import "./App.css";
 import Menu from "./Menu";
 import TodoListMenu from "./MenuTodoList";
 import BookmarkMenu from "./MenuBookmark";
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 function App() {
   const [data, setData] = useState([]);
@@ -23,13 +29,13 @@ function App() {
   };
 
   return (
-    <div>
+    <StyledContainer>
       <Menu />
       <Routes>
-        <Route path="/Todo" element={<TodoListMenu onCreateData={onCreateData} data={data} setData={setData} />} />
+        <Route path="/" element={<TodoListMenu onCreateData={onCreateData} data={data} setData={setData} />} />
         <Route path="/Bookmark" element={<BookmarkMenu data={data} setData={setData} />} />
       </Routes>
-    </div>
+    </StyledContainer>
   );
 }
 
