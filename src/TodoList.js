@@ -4,7 +4,6 @@ import TodoItem from "./TodoItem";
 const TodoList = ({ data, setData }) => {
   return (
     <div>
-      <h5>todo</h5>
       {data
         .filter((item) => !item.marked)
         .map((item) => (

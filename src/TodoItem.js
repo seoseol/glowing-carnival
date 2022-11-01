@@ -39,8 +39,8 @@ const TodoItem = ({ dataItem, dataList, setData }) => {
       ) : (
         <span onClick={changeInput}>{dataItem.todoName} </span>
       )}
-      {isEdit ? <button onClick={edithandler}>확인</button> : <button onClick={removehandler}>삭제</button>}
-      <button onClick={bookmarkhandler}>{dataItem.marked ? "해제" : "북마크"}</button>
+      {isEdit ? <button onClick={edithandler}>ok</button> : <button onClick={removehandler}>remove</button>}
+      <button onClick={bookmarkhandler}>{dataItem.marked ? "cancel" : "bookmark"}</button>
     </div>
   );
 };
