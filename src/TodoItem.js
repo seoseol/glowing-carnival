@@ -104,15 +104,11 @@ const TodoItem = ({ dataItem, dataList, setData }) => {
     if (e.target.checked) {
       console.log("?");
       setIsCheck(true);
-      setData(
-        dataList.map((item) => (item.todo_id == dataItem.todo_id - 2 ? { ...dataItem, todo_status: "완료" } : item))
-      );
+      setData(dataList.map((item) => (item.todo_id == dataItem.todo_id ? { ...dataItem, todo_status: "완료" } : item)));
     } else {
       console.log("!");
       setIsCheck(false);
-      setData(
-        dataList.map((item) => (item.todo_id == dataItem.todo_id - 2 ? { ...dataItem, todo_status: "미완" } : item))
-      );
+      setData(dataList.map((item) => (item.todo_id == dataItem.todo_id ? { ...dataItem, todo_status: "미완" } : item)));
     }
     putTodoData();
   };
