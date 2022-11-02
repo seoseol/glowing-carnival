@@ -5,7 +5,7 @@ const TodoList = ({ data, setData }) => {
   return (
     <div>
       {data
-        .filter((item) => !item.marked)
+        .filter((item) => item.bookmark_status == "N")
         .map((item) => (
           <TodoItem dataItem={item} dataList={data} setData={setData} />
         ))}
