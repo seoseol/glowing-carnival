@@ -22,7 +22,7 @@ const StyledBtn = styled.button`
   border-radius: 5px;
 `;
 
-const TodoAdd = ({ setIsAdd }) => {
+const TodoAdd = ({ setIsAdd, getdata }) => {
   const [todo, setTodo] = React.useState("");
   const inputTodo = useRef();
 
@@ -34,27 +34,15 @@ const TodoAdd = ({ setIsAdd }) => {
   //     console.error(error);
   //   }
   // };
-  const postData = () => {
-    axios({
+  const postData = async () => {
+    await axios({
       method: "post",
       url: "http://sortielab.com:8200/todo",
       params: {
         todoName: `${todo}`,
       },
-    })
-      .then((response) => {
-        // if (response.data.result["code"] === "200") {
-        //   setCompanyList(response.data.data);
-        //   console.log(response.data.data);
-        // } else if (response.data.result["code"] === "401") {
-        //   alert("토큰이 만료되었습니다. 로그인 페이지로 이동합니다.");
-        //   window.location.href = "/";
-        // } else if (response.data.result["code"] === "402") {
-        // } else {
-        //   alert(response.data.result["message"]);
-        // }
-      })
-      .catch(function (error) {});
+    });
+    getdata();
   };
 
   const editTodo = (e) => {
@@ -68,6 +56,7 @@ const TodoAdd = ({ setIsAdd }) => {
     }
     // onCreateData(false, false, todo);
     postData();
+
     alert("success!");
     setTodo("");
     setIsAdd(false);

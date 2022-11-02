@@ -2,6 +2,38 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin-bottom: 3px;
+`;
+
+const StyledInput = styled.input`
+  width: 250px;
+  margin: 0px 4px;
+  font-size: 16px;
+  background-color: rgb(255, 247, 248);
+  border: 2px dashed #ffd3e7;
+  border-radius: 5px;
+  color: #7a797a;
+`;
+
+const StyledSpan = styled.span`
+  margin: 0px 4px;
+  font-size: 16px;
+  color: #353233;
+  color: ${(props) => props.isCheck && "#c9c4c6"};
+  text-decoration: ${(props) => props.isCheck && "line-through"};
+`;
+
+const StyledCheckSpan = styled.span`
+  margin: 0px 4px;
+  font-size: 16px;
+  text-decoration: line-through;
+  color: #c9c4c6;
+`;
+
 const StyledBtn = styled.button`
   margin-right: 2px;
   color: #ffffff;
@@ -68,20 +100,21 @@ const TodoItem = ({ dataItem, dataList, setData }) => {
     });
   };
 
-  const checkhandler = () => {
-    if (dataItem.todo_status == "미완") {
-      // setIsCheck(!isCheck);
+  const checkhandler = (e) => {
+    if (e.target.checked) {
+      console.log("?");
+      setIsCheck(true);
       setData(
         dataList.map((item) => (item.todo_id == dataItem.todo_id - 2 ? { ...dataItem, todo_status: "완료" } : item))
       );
-      putTodoData();
     } else {
-      setIsCheck(!isCheck);
+      console.log("!");
+      setIsCheck(false);
       setData(
         dataList.map((item) => (item.todo_id == dataItem.todo_id - 2 ? { ...dataItem, todo_status: "미완" } : item))
       );
-      putTodoData();
     }
+    putTodoData();
   };
 
   const edithandler = () => {
@@ -118,13 +151,22 @@ const TodoItem = ({ dataItem, dataList, setData }) => {
   };
 
   return (
-    <div>
-      <input type="checkbox" onClick={checkhandler} />
+    <StyledDiv>
+      <input
+        type="checkbox"
+        onClick={checkhandler}
+        checked={dataItem.todo_status == "완료" ? "checked" : ""}
+        readOnly
+      />
+      {/* checked={dataItem.todo_status == "완료" ? testCheck : testCheck} */}
       {isEdit ? (
-        <input onChange={editTodoName} value={editContent}></input>
+        <StyledInput onChange={editTodoName} value={editContent} />
       ) : (
-        <span onClick={changeInput}>{dataItem.todo_name} </span>
+        <StyledSpan onClick={changeInput} isCheck={dataItem.todo_status == "완료" ? "isCheck" : ""}>
+          {dataItem.todo_name}
+        </StyledSpan>
       )}
+
       {/* <StyledBtn onClick={bookmarkhandler}>{dataItem.bookmark_status == "Y" ? "bookmark" : "cancel"}</StyledBtn> */}
       {dataItem.bookmark_status == "Y" ? (
         <StyledBtn onClick={noBookmarkhandler}>cancle</StyledBtn>
@@ -132,7 +174,7 @@ const TodoItem = ({ dataItem, dataList, setData }) => {
         <StyledBtn onClick={bookmarkhandler}>bookmark</StyledBtn>
       )}
       {isEdit ? <StyledBtn onClick={edithandler}>ok</StyledBtn> : <StyledBtn onClick={removehandler}>remove</StyledBtn>}
-    </div>
+    </StyledDiv>
   );
 };
 

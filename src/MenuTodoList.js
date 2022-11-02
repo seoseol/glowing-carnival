@@ -33,7 +33,7 @@ const StyledTodoAdd = styled(TodoAdd)`
   text-align: center;
 `;
 
-const TodoListMenu = ({ onCreateData, data, setData }) => {
+const TodoListMenu = ({ onCreateData, data, setData, getdata }) => {
   const [isAdd, setIsAdd] = React.useState(false);
 
   const addHandler = () => {
@@ -45,7 +45,7 @@ const TodoListMenu = ({ onCreateData, data, setData }) => {
       <StyledH>TODAY'S TO-DO</StyledH>
       <StyledInContainer>
         <StyledP onClick={addHandler}>ADD</StyledP>
-        {isAdd ? <StyledTodoAdd onCreateData={onCreateData} setIsAdd={setIsAdd} /> : undefined}
+        {isAdd ? <StyledTodoAdd onCreateData={onCreateData} setIsAdd={setIsAdd} getdata={getdata} /> : undefined}
       </StyledInContainer>
       <TodoList data={data} setData={setData} />
     </StyledContainer>

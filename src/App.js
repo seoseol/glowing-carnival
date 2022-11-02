@@ -46,7 +46,7 @@ function App() {
     <StyledContainer>
       <Menu />
       <Routes>
-        <Route path="/" element={<TodoListMenu data={data} setData={setData} />} />
+        <Route path="/" element={<TodoListMenu data={data} setData={setData} getdata={getdata} />} />
         <Route path="/Bookmark" element={<BookmarkMenu data={data} setData={setData} />} />
       </Routes>
     </StyledContainer>
